@@ -1,0 +1,21 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node", // Debug type
+            "request": "launch", // Request type launch or attach
+            "name": "Start Debug",
+            "runtimeExecutable": "yarn", // Runtime app to use
+            "runtimeArgs": [
+                "start"
+            ], // Args to use
+            "console": "integratedTerminal",
+            "restart": true,
+            "autoAttachChildProcesses": true,
+            "outFiles": [
+                "${workspaceFolder}/**/*.js",
+                "!**/node_modules/**"
+            ]
+        }
+    ]
+}

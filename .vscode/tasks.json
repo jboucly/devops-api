@@ -1,0 +1,81 @@
+{
+    "version": "2.0.0",
+    "presentation": {
+        "clear": false,
+        "showReuseMessage": true,
+    },
+    "tasks": [
+        // ### RUN APP ##################################################################
+        {
+            "type": "shell",
+            "group": "build",
+            "command": "yarn start",
+            "problemMatcher": [],
+            "label": "[RUN] - Start app with watch mode",
+        },
+        // ### BUILD APP ################################################################
+        {
+            "type": "shell",
+            "group": "build",
+            "command": "yarn build",
+            "label": "[BUILD] - Build app",
+            "problemMatcher": [],
+        },
+        // ### MIGRATION ################################################################
+        {
+            "type": "shell",
+            "group": "build",
+            "problemMatcher": [],
+            "label": "[MIGRATION] - Run migration",
+            "command": "yarn db:migration:run",
+        },
+        {
+            "type": "shell",
+            "group": "build",
+            "problemMatcher": [],
+            "command": "yarn db:migration:revert",
+            "label": "[MIGRATION] - Revert last migration",
+        },
+        {
+            "type": "shell",
+            "group": "build",
+            "problemMatcher": [],
+            "label": "[MIGRATION] - Generate migration",
+            "command": "yarn  db:migration:generate --name ${input:migrationName}",
+        },
+        {
+            "type": "shell",
+            "group": "build",
+            "problemMatcher": [],
+            "label": "[MIGRATION] - Create migration",
+            "command": "yarn db:migration:create --name ${input:migrationName}",
+        },
+        // ### SDK ################################################################
+        {
+            "type": "shell",
+            "group": "build",
+            "command": "yarn ${input:sdkQuestion}",
+            "problemMatcher": [],
+            "label": "[BUILD] - Build SDK",
+        },
+    ],
+    "inputs": [
+        // ———— Migration prompt ––––––––––––––––––––––––––––––––––––
+        {
+            "id": "migrationName",
+            "type": "promptString",
+            "default": "migrationName",
+            "description": "Name of the migration (camelCase)",
+        },
+        {
+            "id": "sdkQuestion",
+            "type": "pickString",
+            "default": "sdk:build --copy",
+            "options": [
+                "sdk:build",
+                "sdk:build --copy",
+            ],
+            "description": "Do you want to build and copy the SDK ?",
+        }
+    ]
+}
