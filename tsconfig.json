@@ -18,6 +18,9 @@
       "@common/*": [
         "src/common/*"
       ],
+      "@entities/*": [
+        "src/entities/*"
+      ],
       "@tests/*": [
         "tests/*"
       ]
