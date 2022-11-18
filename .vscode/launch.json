@@ -7,7 +7,7 @@
             "name": "Start Debug",
             "runtimeExecutable": "yarn", // Runtime app to use
             "runtimeArgs": [
-                "start"
+                "start:dev"
             ], // Args to use
             "console": "integratedTerminal",
             "restart": true,
