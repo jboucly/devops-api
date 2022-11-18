@@ -28,6 +28,6 @@ services:
             - 'PGADMIN_DEFAULT_EMAIL=${PGADMIN_EMAIL}'
             - 'PGADMIN_DEFAULT_PASSWORD=${PGADMIN_PASSWORD}'
         volumes:
-            - ./docker/pgadmin/servers.json:/pgadmin4/servers.json
+            - ./pgadmin/servers.json:/pgadmin4/servers.json
         networks:
             - devopsApi
