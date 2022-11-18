@@ -1,5 +1,5 @@
 import { CustomNestLogger } from '@common/logger/custom-nest-logger';
-import { INestApplication, ValidationPipe } from '@nestjs/common';
+import { INestApplication, ValidationPipe, VersioningType } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express/interfaces/nest-express-application.interface';
@@ -16,6 +16,10 @@ export const ConstructApp = async (): Promise<{
     const configService = app.get(ConfigService);
 
     app.use(helmet());
+    app.enableVersioning({ 
+        type: VersioningType.URI, 
+        defaultVersion: configService.get('commons.versioning'), 
+    });
     app.useLogger(new CustomNestLogger(configService));
     app.useGlobalPipes(
         new ValidationPipe({
