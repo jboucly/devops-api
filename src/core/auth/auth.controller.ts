@@ -13,8 +13,8 @@ export class AuthController {
 
     @Post('login')
     @UseGuards(AuthGuard('local'))
-    @ApiNotFoundResponse()
-    @ApiOkResponse({ type: LoginDtoOut })
+    @ApiNotFoundResponse({ description: 'User not found'})
+    @ApiOkResponse({ type: LoginDtoOut, description: 'User connected' })
     public async login(@Body() dto: LoginDtoIn): Promise<void> {
         await this.service.login(dto);
     }
