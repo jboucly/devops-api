@@ -17,7 +17,7 @@ function checkArgvExist(arg) {
 
 function runMigration() {
     console.info(scriptName, chalk.white('Running migration...'));
-    $`yarn ts-node --transpile-only -r tsconfig-paths/register node_modules/typeorm/cli.js migration:run --config src/config/orm.cli.config.js`;
+    $`yarn ts-node --transpile-only -r tsconfig-paths/register node_modules/typeorm/cli.js migration:run -d src/config/orm.cli.config.ts`;
 }
 
 /** ################################# SCRIPT ################################## */
@@ -31,15 +31,15 @@ try {
             break;
         case 'revert':
             console.info(scriptName, chalk.white('Reverting migration...'));
-            $`yarn ts-node --transpile-only -r tsconfig-paths/register node_modules/typeorm/cli.js migration:revert --config src/config/orm.cli.config.js`;
+            $`yarn ts-node --transpile-only -r tsconfig-paths/register node_modules/typeorm/cli.js migration:revert -d src/config/orm.cli.config.ts`;
             break;
         case 'generate':
             checkArgvExist('name');
-            $`yarn ts-node --transpile-only -r tsconfig-paths/register node_modules/typeorm/cli.js migration:generate --config src/config/orm.cli.config.ts -n ${name}`;
+            $`yarn ts-node --transpile-only -r tsconfig-paths/register node_modules/typeorm/cli.js migration:generate -d src/config/orm.cli.config.ts -n ${name}`;
             break;
         case 'create':
             checkArgvExist('name');
-            $`yarn ts-node --transpile-only -r tsconfig-paths/register node_modules/typeorm/cli.js migration:create -d src/migrations -n ${name}`;
+            $`yarn ts-node --transpile-only -r tsconfig-paths/register node_modules/typeorm/cli.js migration:create src/migrations/${name}`;
             break;
         default:
             runMigration();
