@@ -35,7 +35,7 @@ try {
             break;
         case 'generate':
             checkArgvExist('name');
-            $`yarn ts-node --transpile-only -r tsconfig-paths/register node_modules/typeorm/cli.js migration:generate -d src/config/orm.cli.config.ts -n ${name}`;
+            $`yarn ts-node --transpile-only -r tsconfig-paths/register node_modules/typeorm/cli.js migration:generate src/migrations/${name} -d src/config/orm.cli.config.ts`;
             break;
         case 'create':
             checkArgvExist('name');
