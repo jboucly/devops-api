@@ -20,7 +20,7 @@ export class UsersService {
 
         try {
             await this.repository.save(this.repository.create({
-                ...dtoIn
+                ...dtoIn    
             }));
         } catch (error) {
             throw new InternalServerErrorException('An error occurred in the registration process');
