@@ -11,7 +11,7 @@ services:
         env_file:
             - '../.env'
         environment:
-            POSTGRES_DB: devopsApi
+            POSTGRES_DB: devopsApiDb
             POSTGRES_USER: ${DB_USER}
             POSTGRES_PASSWORD: ${DB_PASSWORD}
         networks:
