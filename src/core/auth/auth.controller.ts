@@ -1,4 +1,4 @@
-import { Body, Controller, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, HttpCode, HttpStatus, Post, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { ApiBearerAuth, ApiNotFoundResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { AuthService } from './auth.service';
@@ -12,10 +12,11 @@ export class AuthController {
     constructor(private readonly service: AuthService) {}
 
     @Post('login')
+    @HttpCode(HttpStatus.OK)
     @UseGuards(AuthGuard('local'))
     @ApiNotFoundResponse({ description: 'User not found'})
     @ApiOkResponse({ type: LoginDtoOut, description: 'User connected' })
-    public async login(@Body() dto: LoginDtoIn): Promise<void> {
-        await this.service.login(dto);
+    public async login(@Body() dto: LoginDtoIn): Promise<LoginDtoOut> {
+        return await this.service.login(dto);
     }
 }
