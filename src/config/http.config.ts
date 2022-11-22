@@ -1,6 +1,5 @@
 import { registerAs } from '@nestjs/config';
 
-
 export default registerAs('http', () => ({
     cors: process.env.CORS || '*',
     host: process.env.HTTP_HOST || 'localhost',

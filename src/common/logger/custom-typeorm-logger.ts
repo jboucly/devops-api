@@ -92,7 +92,7 @@ export class CustomTypeOrmLogger implements Logger {
      * @param {QueryRunner} [queryRunner]
      * @returns {*}
      */
-    public log(level: 'log' | 'info' | 'warn', message: any, queryRunner?: QueryRunner): any {
+    public log(level: 'log' | 'info' | 'warn', message: unknown, queryRunner?: QueryRunner): unknown {
         if (this.isLogEnabled || (!this.isLogEnabled && isEqual(level, 'warn'))) {
             return this.advancedConsoleLogger.log(level, message, queryRunner);
         }

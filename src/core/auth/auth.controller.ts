@@ -14,7 +14,7 @@ export class AuthController {
     @Post('login')
     @HttpCode(HttpStatus.OK)
     @UseGuards(AuthGuard('local'))
-    @ApiNotFoundResponse({ description: 'User not found'})
+    @ApiNotFoundResponse({ description: 'User not found' })
     @ApiOkResponse({ type: LoginDtoOut, description: 'User connected' })
     public async login(@Body() dto: LoginDtoIn): Promise<LoginDtoOut> {
         return await this.service.login(dto);

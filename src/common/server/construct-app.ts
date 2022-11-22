@@ -16,9 +16,9 @@ export const ConstructApp = async (): Promise<{
     const configService = app.get(ConfigService);
 
     app.use(helmet());
-    app.enableVersioning({ 
-        type: VersioningType.URI, 
-        defaultVersion: configService.get('commons.versioning'), 
+    app.enableVersioning({
+        type: VersioningType.URI,
+        defaultVersion: configService.get('commons.versioning'),
     });
     app.useLogger(new CustomNestLogger(configService));
     app.useGlobalPipes(

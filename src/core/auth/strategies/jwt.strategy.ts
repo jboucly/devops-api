@@ -12,8 +12,8 @@ import { IAuthDecodedPayload } from '../interfaces/auth-decoded-payload';
 export class JwtStrategy extends PassportStrategy(Strategy) {
     constructor(
         @InjectRepository(Users)
-        private readonly usersRepository : Repository<Users>,
-        private readonly configService: ConfigService,
+        private readonly usersRepository: Repository<Users>,
+        private readonly configService: ConfigService
     ) {
         super({
             ignoreExpiration: false,
@@ -28,9 +28,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
      * @param {IAuthDecodedPayload} payload
      * @returns {Promise<Users>}
      */
-    public async validate(
-        payload: IAuthDecodedPayload
-    ): Promise<Users> {
+    public async validate(payload: IAuthDecodedPayload): Promise<Users> {
         const user = await this.usersRepository.findOne({
             where: { id: payload.userId },
         });

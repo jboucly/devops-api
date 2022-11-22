@@ -10,7 +10,7 @@ export class UsersController {
 
     @Post('register')
     @HttpCode(HttpStatus.CREATED)
-    @ApiCreatedResponse({ description: 'User created'})
+    @ApiCreatedResponse({ description: 'User created' })
     @ApiNotAcceptableResponse({ description: 'User exist' })
     public async register(@Body() dtoIn: UserRegisterDtoIn): Promise<void> {
         await this.service.registerUser(dtoIn);

@@ -9,7 +9,7 @@ import { Users } from './users.entity';
 export class UsersService {
     constructor(
         @InjectRepository(Users)
-        private readonly repository: Repository<Users>,
+        private readonly repository: Repository<Users>
     ) {}
 
     /**
@@ -19,9 +19,11 @@ export class UsersService {
         await this.checkUserExistOnRegistration(dtoIn);
 
         try {
-            await this.repository.save(this.repository.create({
-                ...dtoIn    
-            }));
+            await this.repository.save(
+                this.repository.create({
+                    ...dtoIn,
+                })
+            );
         } catch (error) {
             throw new InternalServerErrorException('An error occurred in the registration process');
         }
@@ -32,13 +34,9 @@ export class UsersService {
      * @param {UserRegisterDtoIn} dtoIn
      * @returns {Promise<void>}
      */
-    private async checkUserExistOnRegistration(dto: UserRegisterDtoIn): Promise<void> { 
+    private async checkUserExistOnRegistration(dto: UserRegisterDtoIn): Promise<void> {
         const userSearch = await this.repository.findOne({
-            where: [
-                { email: dto.email },
-                { username: dto.username },
-                { username: dto.username, email: dto.email },
-            ]
+            where: [{ email: dto.email }, { username: dto.username }, { username: dto.username, email: dto.email }],
         });
 
         if (!isNil(userSearch)) {

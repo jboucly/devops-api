@@ -12,17 +12,17 @@ import { LocalStrategy } from './strategies/local.strategy';
 @Module({
     controllers: [AuthController],
     imports: [
-      PassportModule,
-      TypeOrmModule.forFeature([Users]),
-      JwtModule.registerAsync({
-          inject: [ConfigService],
-          useFactory: async (configService: ConfigService) => ({
-              secret: configService.get('auth.jwtSecret'),
-              signOptions: {
-                  expiresIn: configService.get('auth.jwtExpireIn'),
-              },
-          }),
-      }),
+        PassportModule,
+        TypeOrmModule.forFeature([Users]),
+        JwtModule.registerAsync({
+            inject: [ConfigService],
+            useFactory: async (configService: ConfigService) => ({
+                secret: configService.get('auth.jwtSecret'),
+                signOptions: {
+                    expiresIn: configService.get('auth.jwtExpireIn'),
+                },
+            }),
+        }),
     ],
     providers: [AuthService, JwtStrategy, LocalStrategy],
 })

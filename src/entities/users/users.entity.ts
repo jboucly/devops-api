@@ -26,7 +26,7 @@ export class Users extends BaseEntity implements IUser {
     public password: string;
 
     @BeforeInsert()
-    public async transformPassword(): Promise<void> { 
+    public async transformPassword(): Promise<void> {
         this.password = await hash(this.password, await genSalt());
     }
 }
