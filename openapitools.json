@@ -1,0 +1,20 @@
+{
+    "$schema": "./node_modules/@openapitools/openapi-generator-cli/config.schema.json",
+    "spaces": 4,
+    "generator-cli": {
+        "version": "5.3.0",
+        "generators": {
+            "typescript": {
+                "generatorName": "typescript-fetch",
+                "glob": "swagger-spec.json",
+                "output": "dist/devops-api-sdk",
+                "skipValidateSpec": true,
+                "additionalProperties": {
+                    "typescriptThreePlus": true,
+                    "modelPropertyNaming": "original",
+                    "enumPropertyNaming": "UPPERCASE"
+                }
+            }
+        }
+    }
+}

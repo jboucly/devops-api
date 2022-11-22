@@ -15,15 +15,15 @@ const scriptCopyName = chalk.cyan('[ Copy SDK ] ');
 
 function copySDKToFront() {
     if (argv.copy) {
-        const frontSDKPath = process.env.FRONT_SDK_PATH;
+        const frontSDKPath = process.env.SDK_PATH;
 
         if (frontSDKPath) {
             console.log(`${scriptCopyName} Copying SDK to ${frontSDKPath}`);
 
-            const sdkPath = path.join(__dirname, '..', 'dist', 'client-api-sdk');
+            const sdkPath = path.join(__dirname, '..', 'dist', 'devops-api-sdk');
             fs.copySync(sdkPath, frontSDKPath);
         } else {
-            throw new Error('FRONT_SDK_PATH is not defined');
+            throw new Error('SDK_PATH is not defined');
         }
     }
 }
@@ -37,11 +37,11 @@ try {
 
     // Build swagger specs
     console.info(scriptName, chalk.white('Creating swagger spec file...'));
-    await spinner(chalk.gray('Waiting please...'), () => $`node -r dotenv/config dist/src/main/swagger.js`);
+    await spinner(chalk.gray('Waiting please...'), () => $`node -r dotenv/config dist/common/server/swagger.js`);
 
     // Remove the previously generated SDK
     console.info(scriptName, chalk.white('Removing previous SDK...'));
-    await spinner(chalk.gray('Waiting please...'), () => $`yarn rimraf dist/client-api-sdk`);
+    await spinner(chalk.gray('Waiting please...'), () => $`yarn rimraf dist/devops-api-sdk`);
 
     // Generate SDK from swagger spec file
     console.info(scriptName, chalk.white('Generating SDK...'));

@@ -38,3 +38,6 @@ docker/volumes
 
 # Configs
 .env
+
+# Swagger
+swagger-spec.json
