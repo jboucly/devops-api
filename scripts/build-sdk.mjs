@@ -43,9 +43,16 @@ try {
     console.info(scriptName, chalk.white('Removing previous SDK...'));
     await spinner(chalk.gray('Waiting please...'), () => $`yarn rimraf dist/devops-api-sdk`);
 
+    // Create directory
+    console.info(scriptName, chalk.white('Create directory...'));
+    await spinner(chalk.gray('Waiting please...'), () => $`mkdir dist/devops-api-sdk`);
+
     // Generate SDK from swagger spec file
     console.info(scriptName, chalk.white('Generating SDK...'));
-    await spinner(chalk.gray('Waiting please...'), () => $`openapi-generator-cli generate`);
+    await spinner(
+        chalk.gray('Waiting please...'),
+        () => $`yarn swagger-typescript-api -p ./swagger-spec.json -o  -n ./dist/devops-api-sdk/devops-api-sdk.ts`
+    );
 
     copySDKToFront();
 } catch (e) {
